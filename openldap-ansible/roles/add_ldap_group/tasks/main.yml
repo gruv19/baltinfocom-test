@@ -1,0 +1,7 @@
+- name: Add group.ldif file for adding new group
+  template:
+    src: group.ldif.j2
+    dest: /var/tmp/group.ldif
+
+- name: Add Group
+  shell: ldapadd -x -c -D cn=admin,{{ server_base_dn }} -w {{ ldap_admin_pw }} -f /var/tmp/group.ldif
