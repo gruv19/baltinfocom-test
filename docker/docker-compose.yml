@@ -10,6 +10,11 @@ services:
       - CASSANDRA_CLUSTER_NAME=Cluster
     volumes:
       - c-master-data:/var/lib/cassandra
+    deploy:
+      resources:
+        limits:
+          cpus: "0.32"
+          memory: 866M
 
   c-node-1:
     image: cassandra:4.0
@@ -21,6 +26,11 @@ services:
       - c-node-1-data:/var/lib/cassandra
     depends_on:
       - c-master
+    deploy:
+      resources:
+        limits:
+          cpus: "0.32"
+          memory: 866M
 
   c-node-2:
     image: cassandra:4.0
@@ -32,7 +42,12 @@ services:
       - c-node-2-data:/var/lib/cassandra
     depends_on:
       - c-master
-      
+    deploy:
+      resources:
+        limits:
+          cpus: "0.32"
+          memory: 866M
+
 volumes:
   c-master-data:
   c-node-1-data:
