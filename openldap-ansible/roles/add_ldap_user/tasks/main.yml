@@ -1,0 +1,11 @@
+- name: Generate the user password
+  shell: slappasswd -s {{ start_user_pwd }}
+  register: user_pwd
+
+- name: Add user.ldif file for adding new user
+  template:
+    src: user.ldif.j2
+    dest: /var/tmp/user.ldif
+
+- name: Add Group
+  shell: ldapadd -x -c -D cn=admin,{{ server_base_dn }} -w {{ ldap_admin_pw }} -f /var/tmp/user.ldif

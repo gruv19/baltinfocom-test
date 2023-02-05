@@ -1,0 +1,18 @@
+dn: cn={{ username }},ou=people,dc=home,dc=loc
+givenName: {{ user_first_name }}
+sn: {{ user_last_name }}
+cn: {{ user_first_name }} {{ user_last_name }}
+uid: {{ username }}
+uidNumber: {{ user_id }}
+gidNumber: {{ user_group_id }}
+homeDirectory: /home/{{ username }}
+userPassword: {{ user_pwd.stdout }}
+loginShell: /bin/bash
+objectClass: inetOrgPerson
+objectClass: posixAccount
+
+dn: cn={{ username }},ou=groups,dc=home,dc=loc
+cn: {{ username }}
+gidNumber: {{ user_group_id }}
+objectClass: posixGroup
+memberUid: {{ username }}
