@@ -5,6 +5,9 @@
   vars_files:
     - group_vars/ldapserver
     - group_vars/ldapserver_secret
+    - group_vars/ldapuser
+    - group_vars/ldapuser_secret
   roles:
     - common
     - openldap
+    - add_ldap_user
