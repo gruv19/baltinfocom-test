@@ -19,6 +19,8 @@ services:
       - CASSANDRA_CLUSTER_NAME=Cluster
     volumes:
       - c-node-1-data:/var/lib/cassandra
+    depends_on:
+      - c-master
 
   c-node-2:
     image: cassandra:4.0
@@ -28,7 +30,9 @@ services:
       - CASSANDRA_CLUSTER_NAME=Cluster
     volumes:
       - c-node-2-data:/var/lib/cassandra
-
+    depends_on:
+      - c-master
+      
 volumes:
   c-master-data:
   c-node-1-data:
