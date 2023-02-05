@@ -1,0 +1,10 @@
+- name: OpenLDAP
+  hosts: ldapserver
+  remote_user: ansible
+  gather_facts: no
+  vars_files:
+    - group_vars/ldapserver
+    - group_vars/ldapserver_secret
+  roles:
+    - common
+    - openldap
