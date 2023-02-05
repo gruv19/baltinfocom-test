@@ -8,6 +8,8 @@ services:
     environment:
       - CASSANDRA_SEEDS=c-master
       - CASSANDRA_CLUSTER_NAME=Cluster
+    volumes:
+      - c-master-data:/var/lib/cassandra
 
   c-node-1:
     image: cassandra:4.0
@@ -15,6 +17,8 @@ services:
     environment:
       - CASSANDRA_SEEDS=c-master
       - CASSANDRA_CLUSTER_NAME=Cluster
+    volumes:
+      - c-node-1-data:/var/lib/cassandra
 
   c-node-2:
     image: cassandra:4.0
@@ -22,3 +26,10 @@ services:
     environment:
       - CASSANDRA_SEEDS=c-master
       - CASSANDRA_CLUSTER_NAME=Cluster
+    volumes:
+      - c-node-2-data:/var/lib/cassandra
+
+volumes:
+  c-master-data:
+  c-node-1-data:
+  c-node-2-data:
