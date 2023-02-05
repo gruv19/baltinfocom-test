@@ -4,9 +4,21 @@ services:
 
   c-master:
     image: cassandra:4.0
+    restart: unless-stopped
+    environment:
+      - CASSANDRA_SEEDS=c-master
+      - CASSANDRA_CLUSTER_NAME=Cluster
 
   c-node-1:
     image: cassandra:4.0
+    restart: unless-stopped
+    environment:
+      - CASSANDRA_SEEDS=c-master
+      - CASSANDRA_CLUSTER_NAME=Cluster
 
   c-node-2:
     image: cassandra:4.0
+    restart: unless-stopped
+    environment:
+      - CASSANDRA_SEEDS=c-master
+      - CASSANDRA_CLUSTER_NAME=Cluster
