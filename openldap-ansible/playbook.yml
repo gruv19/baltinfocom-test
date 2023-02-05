@@ -5,9 +5,30 @@
   vars_files:
     - group_vars/ldapserver
     - group_vars/ldapserver_secret
-    - group_vars/ldapuser
     - group_vars/ldapuser_secret
   roles:
     - common
     - openldap
-    - add_ldap_user
+    - role: add_ldap_user
+      vars:
+        user_first_name: Ivan
+        user_last_name: Ivanov
+        username: i_ivanov
+        user_id: 2000
+        user_group_id: 2000
+    - role: add_ldap_user
+      vars:
+        user_first_name: Petr
+        user_last_name: Petrov
+        username: p_petrov
+        user_id: 2001
+        user_group_id: 2001
+    - role: add_ldap_group
+      vars:
+        group_id: 3000
+        group_cn: users
+    - role: add_ldap_group
+      vars:
+        group_id: 3001
+        group_cn: admins
+
