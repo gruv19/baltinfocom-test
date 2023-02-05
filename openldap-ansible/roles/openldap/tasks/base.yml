@@ -1,0 +1,7 @@
+- name: Add base.ldif file for adding Users and Groups
+  template:
+    src: base.ldif.j2
+    dest: /var/tmp/base.ldif
+
+- name: Add base dn for Users and Groups
+  shell: ldapadd -x -c -D cn=admin,{{ server_base_dn }} -w {{ ldap_admin_pw }} -f /var/tmp/base.ldif

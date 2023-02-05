@@ -1,0 +1,21 @@
+- name: Install slapd and ldap-utils
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+   - slapd
+   - ldap-utils
+
+- name: Generate the root password for ldap
+  shell: slappasswd -s {{ ldap_admin_pw }}
+  register: root_pwd
+
+- name: Add root.ldif file for change admin password
+  template:
+    src: root.ldif.j2
+    dest: /var/tmp/root.ldif
+
+- name: Change admin password
+  become: yes
+  shell: sudo ldapmodify -H ldapi:// -Y EXTERNAL -f /var/tmp/root.ldif
