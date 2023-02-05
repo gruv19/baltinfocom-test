@@ -15,6 +15,9 @@ services:
         limits:
           cpus: "0.32"
           memory: 866M
+    networks:
+      c-net:
+        ipv4_address: 192.168.100.50
 
   c-node-1:
     image: cassandra:4.0
@@ -31,6 +34,9 @@ services:
         limits:
           cpus: "0.32"
           memory: 866M
+    networks:
+      c-net:
+        ipv4_address: 192.168.100.51
 
   c-node-2:
     image: cassandra:4.0
@@ -47,8 +53,21 @@ services:
         limits:
           cpus: "0.32"
           memory: 866M
+    networks:
+      c-net:
+        ipv4_address: 192.168.100.52
 
 volumes:
   c-master-data:
   c-node-1-data:
   c-node-2-data:
+
+networks:
+  c-net:
+    driver: macvlan
+    driver_opts:
+      parent: ens33
+    ipam:
+      config:
+        - subnet: 192.168.100.0/24
+          gateway: 192.168.100.1
