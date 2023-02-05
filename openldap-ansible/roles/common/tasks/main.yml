@@ -1,0 +1,9 @@
+- name: Set a hostname
+  shell: sudo hostnamectl hostname {{ server_domain_name }}
+  become: yes 
+
+- name: Add server name to /etc/hosts
+  become: yes 
+  lineinfile:
+    path: /etc/hosts
+    line: "{{ inventory_hostname }} {{ server_domain_name }}"
