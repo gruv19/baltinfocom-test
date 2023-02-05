@@ -17,7 +17,7 @@ services:
           memory: 866M
     networks:
       c-net:
-        ipv4_address: 192.168.100.50
+        ipv4_address: <c_master_ip>
 
   c-node-1:
     image: cassandra:4.0
@@ -36,7 +36,7 @@ services:
           memory: 866M
     networks:
       c-net:
-        ipv4_address: 192.168.100.51
+        ipv4_address: <c_node_1_ip>
 
   c-node-2:
     image: cassandra:4.0
@@ -55,7 +55,7 @@ services:
           memory: 866M
     networks:
       c-net:
-        ipv4_address: 192.168.100.52
+        ipv4_address: <c_node_2_ip>
 
 volumes:
   c-master-data:
@@ -66,8 +66,8 @@ networks:
   c-net:
     driver: macvlan
     driver_opts:
-      parent: ens33
+      parent: <host_network_dev>
     ipam:
       config:
-        - subnet: 192.168.100.0/24
-          gateway: 192.168.100.1
+        - subnet: <host_subnet>/<host_mask>
+          gateway: <host_gateway>
