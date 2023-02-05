@@ -1,0 +1,2 @@
+server_domain_name: srv.home.loc
+server_base_dn: dc=home,dc=loc
